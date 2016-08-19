@@ -4,10 +4,10 @@
 Polyfill for:
   https://github.com/whatwg/console/issues/63
 */
-console.assert = (function() {
+console.assert = (() => {
     'use strict'
     const assert = console.assert
-    return function(expr, ...args) {
+    return (expr, ...args) => {
       expr = expr ? true : false
       assert.apply([].concat(expr, args), console)
       return expr
