@@ -7,8 +7,9 @@ Polyfill for:
 console.assert = (function() {
     'use strict'
     const assert = console.assert
-    return function(...args) {
-      assert.apply(args, console)
-      return !args[0]
+    return function(expr, ...args) {
+      expr = expr ? true : false
+      assert.apply([].concat(expr, args), console)
+      return expr
     }
   })()
